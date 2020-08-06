@@ -60,5 +60,11 @@
         "vector": "cpp",
         "*.tcc": "cpp",
         "hashtable": "cpp"
+    },
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
     }
 }
