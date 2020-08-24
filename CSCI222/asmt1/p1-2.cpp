@@ -12,6 +12,6 @@ int main()
     getline(cin, user_name);
 
     //use input and exit program
-    cout << "Hello, " + user_name + "! Nice to meet you.\n";
+    cout << "Hello, " + user_name + "! I am glad to meet you.\n";
     return 0;
 }
