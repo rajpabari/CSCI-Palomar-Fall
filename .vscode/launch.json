@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - Main",
+      "request": "launch",
+      "mainClass": "Main",
+      "projectName": "CSCI-Palomar-Fall_74e68707"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - newesttest",
       "request": "launch",
       "mainClass": "newesttest",
