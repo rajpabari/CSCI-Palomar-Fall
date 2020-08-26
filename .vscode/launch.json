@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "CodeLens (Launch) - PhoneBookRunner",
+      "request": "launch",
+      "mainClass": "PhoneBookRunner",
+      "projectName": "CSCI-Palomar-Fall_74e68707"
+    },
+    {
+      "type": "java",
       "name": "CodeLens (Launch) - Main",
       "request": "launch",
       "mainClass": "Main",
@@ -29,7 +36,7 @@
       "type": "java",
       "name": "Debug (Launch)",
       "request": "launch",
-      "mainClass": "test"
+      "mainClass": "${file}"
     },
     {
       "name": "Python: Current File",
