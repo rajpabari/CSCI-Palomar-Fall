@@ -5,32 +5,22 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "java",
-      "name": "CodeLens (Launch) - PhoneBookRunner",
+      "name": "(lldb) Launch",
+      "type": "cppdbg",
       "request": "launch",
-      "mainClass": "PhoneBookRunner",
-      "projectName": "CSCI-Palomar-Fall_74e68707"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - Main",
-      "request": "launch",
-      "mainClass": "Main",
-      "projectName": "CSCI-Palomar-Fall_74e68707"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - newesttest",
-      "request": "launch",
-      "mainClass": "newesttest",
-      "projectName": "CSCI-Palomar-Fall_74e68707"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - newtest",
-      "request": "launch",
-      "mainClass": "newtest",
-      "projectName": "CSCI-Palomar-Fall_74e68707"
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [
+        "-g",
+        "${fileDirname}\\**.cpp",
+        //"${fileDirname}\\**.h",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": true,
+      "MIMode": "lldb"
     },
     {
       "type": "java",
