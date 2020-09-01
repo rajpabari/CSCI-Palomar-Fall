@@ -18,7 +18,20 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "clang++ - Build and debug active file",
+      "name": "NEW clang++ - Build and debug active file",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": true,
+      "MIMode": "lldb",
+      "preLaunchTask": "clang++ - Build and debug active file"
+    },
+    {
+      "name": "OLD clang++ - Build and debug active file",
       "type": "cppdbg",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",

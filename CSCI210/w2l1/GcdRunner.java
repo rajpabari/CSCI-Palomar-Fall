@@ -16,5 +16,6 @@ public class GcdRunner {
         gcd = new GCD(int1, int2);
         System.out.println(gcd);
         System.out.println("result = " + gcd.findGCD());
+        scan.close();
     }
 }
