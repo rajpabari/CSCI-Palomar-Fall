@@ -67,5 +67,6 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "java.dependency.packagePresentation": "flat"
 }

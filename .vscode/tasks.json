@@ -21,6 +21,25 @@
       },
       // Use the standard MS compiler pattern to detect errors, warnings and infos
       "problemMatcher": "$msCompile"
+    },
+    {
+      "type": "shell",
+      "label": "clang++ - Build and debug active file",
+      "command": "/usr/bin/clang++",
+      "args": [
+        "-g",
+        "${fileDirname}/**.cpp",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     }
   ]
 }

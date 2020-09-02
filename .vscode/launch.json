@@ -6,34 +6,6 @@
   "configurations": [
     {
       "type": "java",
-      "name": "CodeLens (Launch) - PhoneBookRunner",
-      "request": "launch",
-      "mainClass": "PhoneBookRunner",
-      "projectName": "CSCI-Palomar-Fall_74e68707"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - Main",
-      "request": "launch",
-      "mainClass": "Main",
-      "projectName": "CSCI-Palomar-Fall_74e68707"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - newesttest",
-      "request": "launch",
-      "mainClass": "newesttest",
-      "projectName": "CSCI-Palomar-Fall_74e68707"
-    },
-    {
-      "type": "java",
-      "name": "CodeLens (Launch) - newtest",
-      "request": "launch",
-      "mainClass": "newtest",
-      "projectName": "CSCI-Palomar-Fall_74e68707"
-    },
-    {
-      "type": "java",
       "name": "Debug (Launch)",
       "request": "launch",
       "mainClass": "${file}"
@@ -46,7 +18,7 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "clang++ - Build and debug active file",
+      "name": "NEW clang++ - Build and debug active file",
       "type": "cppdbg",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
@@ -54,7 +26,20 @@
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],
-      "externalConsole": false,
+      "externalConsole": true,
+      "MIMode": "lldb",
+      "preLaunchTask": "clang++ - Build and debug active file"
+    },
+    {
+      "name": "OLD clang++ - Build and debug active file",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": true,
       "MIMode": "lldb",
       "preLaunchTask": "C/C++: clang++ build active file"
     }
