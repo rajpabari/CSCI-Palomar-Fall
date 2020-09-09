@@ -1,4 +1,4 @@
-public class Student {
+class Student {
     private int[] grades;
     private String name;
 
