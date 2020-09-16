@@ -1,9 +1,9 @@
-public class Meter {
+public class NewMeter {
     private MeterType m_meterType;
     private MeterPower m_meterPower;
     private int m_reading;
 
-    public Meter(MeterType type, MeterPower power, int reading) {
+    public NewMeter(MeterType type, MeterPower power, int reading) {
         m_meterType = type;
         m_meterPower = power;
         m_reading = reading;
