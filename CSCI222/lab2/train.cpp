@@ -1,30 +1,44 @@
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
+#include "Segment.h"
 
 using namespace std;
 
 //TODO: dont forget to comment this code
 
-struct Segment
+vector<Segment> trackInit(int size, bool isHorizontal)
 {
-    int state;
-    Segment *next;
-    Segment *prev;
-};
+    vector<Segment> returnTrack(size);
+    string initType = "-";
+    if (!isHorizontal)
+        initType = "|";
+
+    for (int i = 0; i < size; i++)
+    {
+        returnTrack[i].id = i;
+        returnTrack[i].state = 0;
+        returnTrack[i].type = initType;
+        if (i != 0)
+            returnTrack[i].prev = &returnTrack[i - 1];
+        if (i != 10)
+            returnTrack[i].next = &returnTrack[i + 1];
+
+        //cout << returnTrack[i].type;
+    }
+
+    return returnTrack;
+}
 
 int main()
 {
-    vector<Segment> track;
-    Segment temp;
-    temp.state = 0;
-    temp.next = NULL;
-    temp.prev = NULL;
-    track.push_back(temp);
+    vector<Segment> topTrack = trackInit(10, true);
+    vector<Segment> bottomTrack = trackInit(10, true);
+    vector<Segment> leftTrack = trackInit(5, false);
 
-    for (int i = 1; i < 10; i++)
+    for (int i = 0; i < topTrack.size(); i++)
     {
-        temp.prev = &track[i - 1];
-        track.push_back(temp);
+        cout << topTrack[i].type;
     }
 
     return 0;
