@@ -5,6 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "NEW LLDB - C++ Debug and Launch",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "clang++ - Build and debug active file"
+    },
+    {
       "type": "java",
       "name": "Java: Launch & Debug",
       "request": "launch",
@@ -19,7 +28,7 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "NEW clang++ - Build and debug active file",
+      "name": "clang++ - Build and debug active file",
       "type": "cppdbg",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
@@ -30,19 +39,6 @@
       "externalConsole": true,
       "MIMode": "lldb",
       "preLaunchTask": "clang++ - Build and debug active file"
-    },
-    {
-      "name": "OLD clang++ - Build and debug active file",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": true,
-      "MIMode": "lldb",
-      "preLaunchTask": "C/C++: clang++ build active file"
     }
   ]
 }
