@@ -1,0 +1,18 @@
+label segments based on the train that is on the segment
+1 = train going clockwise
+-1 = train going counterclockwise
+0 = no train
+
+train needs to know if it is clockwise or counterclockwise
+
+3 hyphens is 1 segment
+
+--- = empty
+->- = clockwise
+-<- = counterclockwise
+
+struct Segment {
+    int state; //-1, 0, 1
+    pointer for next and prev segment on this track
+    pointer for next and prev segment on adjacent tracks
+}
