@@ -6,7 +6,7 @@
       "defines": [],
       "macFrameworkPath": ["/System/Library/Frameworks", "/Library/Frameworks"],
       "compilerPath": "/usr/bin/clang",
-      "cStandard": "c11",
+      "cStandard": "c18",
       "cppStandard": "c++17",
       "intelliSenseMode": "clang-x64"
     }
