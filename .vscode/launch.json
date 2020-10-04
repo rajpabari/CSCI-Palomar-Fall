@@ -9,7 +9,7 @@
       "type": "lldb",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": [],
+      "args": ["./CSCI222/lab3/matrix1.txt"],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "clang++ - Build and debug active file"
     },
