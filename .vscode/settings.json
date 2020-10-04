@@ -59,7 +59,8 @@
     "utility": "cpp",
     "vector": "cpp",
     "*.tcc": "cpp",
-    "hashtable": "cpp"
+    "hashtable": "cpp",
+    "fstream": "cpp"
   },
   "files.exclude": {
     "**/.classpath": true,
