@@ -5,11 +5,20 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "CodeLens (Launch) - ATMRunner",
+      "request": "launch",
+      "mainClass": "ATMRunner",
+      "projectName": "CSCI-Palomar-Fall_74e68707"
+    },
+    {
       "name": "NEW LLDB - C++ Debug and Launch",
       "type": "lldb",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": ["./CSCI222/lab3/matrix2.txt"],
+      "args": [
+        "./CSCI222/lab3/matrix2.txt"
+      ],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "clang++ - Build and debug active file"
     },
