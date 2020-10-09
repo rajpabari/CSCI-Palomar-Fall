@@ -10,7 +10,7 @@ using namespace std;
 int searchVector(vector<char *> *words, char **word) {
   for (int i = 0; i < words->size(); i++) {
     if (strcmp(*word, (*words)[i]) == 0) {
-      // words->push_back(*(words[i]));
+      words->push_back((*words)[i]);
       return i;
     }
   }
@@ -26,9 +26,7 @@ int main() {
   do {
     word = new char[MAX_LENGTH];
     cin >> word;
-    x = searchVector(&words, &word);
-    if (x != words.size() - 1)
-      words.push_back(words[x]);
+    searchVector(&words, &word);
   } while (strcmp(word, "quit") != 0);
   words.pop_back();
 
