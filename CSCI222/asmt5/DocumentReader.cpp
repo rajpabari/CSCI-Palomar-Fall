@@ -7,47 +7,77 @@
 
 using namespace std;
 
-int searchVector(const vector<char *> *words, string word) {
-  char **myWord;
-  for (int i = 0; i < words->size(); i++) {
-    if (word == (*words)[i]) {
-      myWord = &(*words)[i];
-      words->push_back(*myWord);
-      return i;
+int searchVector(vector<char **> *document, vector<char *> *words, string word,
+                 char **newWord) {
+  // char **myWord;
+  int lastWordIndex;
+  int lastVectIndex;
+  for (vector<char **>::size_type j = 0; j < document->size(); j++) {
+    if (!(*document)[j]) {
+      lastVectIndex = j;
+      break;
     }
   }
-  char *newWord = new char[word.length() + 1];
-  strcpy(newWord, word.c_str());
-  words->push_back(newWord);
-  return words->size() - 1;
+  for (vector<char *>::size_type i = 0; i < words->size(); i++) {
+    if ((*words)[i] && word == (*words)[i]) {
+      // myWord = &(*words)[i];
+      (*document)[lastVectIndex] = &(*words)[i];
+      // document->push_back(&(*words)[i]);
+      return i;
+    } else if (!(*words)[i]) {
+      lastWordIndex = i;
+      break;
+    }
+  }
+
+  strcpy(*newWord, word.c_str());
+  (*words)[lastWordIndex] = (*newWord);
+  (*document)[lastVectIndex] = &(*words)[lastWordIndex];
+  /*words->push_back(*newWord);
+  document->push_back(&(*words)[words->size() - 1]);*/
+  return lastWordIndex;
 }
 
 int main() {
-  vector<char *> words;
-  // vector<char **> document;
-  /*int a = 10;
-  int *p = &a;
-  int *q = p;
-  cout << *p << " " << *q << endl;
-  a = 11;
-  cout << *p << " " << *q << endl;*/
+  vector<char *> words(MAX_LENGTH);
+  vector<char **> document(MAX_LENGTH);
 
+  cout << "Type contents of document, ending with \"quit\" followed by enter "
+          "to stop reading the document"
+       << endl
+       << endl;
+
+  string word = " ";
   char *temp;
-  int x;
-  string word;
   do {
     cin >> word;
-    cout << searchVector(&words, word) << " ";
+    temp = new char[word.length() + 1];
+    searchVector(&document, &words, word, &temp);
   } while (word != "quit");
-  words.pop_back();
+  document.pop_back();
 
-  for (int i = 0; i < words.size(); i++) {
-    cout << words[i] << " " << *words[i] << " " << &words[i] << endl;
+  cout << "\n\nOriginal contents of document: " << endl;
+  for (vector<char **>::size_type i = 0; i < document.size(); i++) {
+    if (!document[i])
+      break;
+    cout << *(document[i]) << " ";
   }
-  words[0] = (char *)"jkjk";
-  cout << "\n\n";
-  for (int i = 0; i < words.size(); i++) {
-    cout << words[i] << " " << &words[i] << endl;
+  cout << "\n\nUnique words in document: " << endl;
+  for (vector<char *>::size_type i = 0; i < words.size(); i++) {
+    if (!words[i])
+      break;
+    cout << (words[i]) << " ";
+  }
+
+  cout << "\n\nIllustrating that the pointer works by changing the value of "
+          "words[0] to something else: "
+       << endl;
+
+  words[0] = (char *)"something else";
+  for (vector<char **>::size_type i = 0; i < document.size(); i++) {
+    if (!document[i])
+      break;
+    cout << *(document[i]) << " ";
   }
   return 0;
 }
