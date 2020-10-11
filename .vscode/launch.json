@@ -5,19 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "java",
-      "name": "CodeLens (Launch) - ATMRunner",
-      "request": "launch",
-      "mainClass": "ATMRunner",
-      "projectName": "CSCI-Palomar-Fall_74e68707"
-    },
-    {
       "name": "NEW LLDB - C++ Debug and Launch",
       "type": "lldb",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
       "args": [
-        "./CSCI222/lab3/matrix2.txt"
+        "./CSCI222/asmt5/StudentProjects/P7-9/student7-9.txt"
       ],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "clang++ - Build and debug active file"
@@ -26,8 +19,8 @@
       "type": "java",
       "name": "Java: Launch & Debug",
       "request": "launch",
-      "mainClass": "${file}",
-      "args": "./CSCI210/w6l1/maze3.txt"
+      "mainClass": "${file}"
+      //"args": "./CSCI210/w6l1/maze3.txt"
     },
     {
       "name": "Python: Current File",
