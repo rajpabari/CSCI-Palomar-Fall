@@ -1,8 +1,6 @@
-C PlusPlus D
-John Smith A
-Jim Cramer F
-Jane Doe C
-Billy Bob C
-Someone Else B
-Raj Pabari A
-Bill Gates F
+John Smith 9 9 9 9 9 9 9 9 9 9
+Jane Doe 1 8 9 8 9 8 9 1 9 9
+Bill Gates 1 1 1 1 1 1 1 1 1 1
+Raj Pabari 10 7 6 9 5 5 9 9 5 9
+C PlusPlus 10 10 10 10 10 10 10 10 10 10
+Jim Cramer 9 8 9 8 9 8 9 9 9 9

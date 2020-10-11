@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#define NUM_QUIZZES 10
 
 using namespace std;
 
@@ -39,6 +40,7 @@ int main(int argc, char *argv[]) {
   size_t pos;
   string match;
   vector<Student79> students(data.size());
+  vector<int> courseGrades(NUM_QUIZZES);
 
   for (int i = 0; i < data.size(); i++) {
     currentLine = data[i]; // current line of the file
@@ -50,25 +52,26 @@ int main(int argc, char *argv[]) {
       // match is the substing between the beginning of line and delimiter index
       match = currentLine.substr(0, pos);
 
-      // depending on if we are looking at firstname or lastname
-      switch (counter) {
-      case 1: {
-        // if its 1 set the lastname
-        currentStudent.lastName = match;
-        break;
-      }
-      default:
-      case 0: {
-        // if its 0 its firstname
+      if (counter == 0) { // input format: this is first name
         currentStudent.firstName = match;
+      } else if (counter == 1) { // input format: this is last name
+        currentStudent.lastName = match;
       }
+      // input format: these are all quiz scores to add them to courseGrades
+      else {
+        courseGrades[counter - 2] = stoi(match);
       }
+
       // erase the string up to and including the delimiter
       currentLine.erase(0, pos + 1); // pos+1 because delimiter length is 1
       counter++;
     }
-    // what's left is the grade
-    currentStudent.grade = currentLine;
+    // what's left is the last grade
+    courseGrades[9] = stoi(currentLine);
+    // set quiz grades in struct
+    currentStudent.quizGrades = courseGrades;
+    // initialize the letter grade corresponding to these quiz grades
+    currentStudent.initGrade();
 
     // insert this student into the vector of students SORTED
     for (int i = 0; i < students.size(); i++) {
@@ -108,10 +111,11 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  // print each student's information in sorted student vector
+  // print each student's information from sorted student vector
   for (int i = 0; i < students.size(); i++) {
     cout << "Name: " << students[i].firstName << " " << students[i].lastName
-         << ", Grade: " << students[i].grade << endl;
+         << ", Grade: " << students[i].grade
+         << ", Quiz Scores: " << students[i].getQuizScores() << endl;
   }
   return 0;
 }

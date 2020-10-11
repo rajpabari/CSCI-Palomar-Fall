@@ -9,9 +9,7 @@
       "type": "lldb",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": [
-        "./CSCI222/asmt5/StudentProjects/P7-9/student7-9.txt"
-      ],
+      "args": ["./CSCI222/asmt5/StudentProjects/P7-9/student7-9.txt"],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "clang++ - Build and debug active file"
     },
