@@ -26,4 +26,8 @@ public class FrontPanel {
             }
         }
     }
+
+    public String toString() {
+        return "Model: " + model + ", Voltage: " + voltage + ", Hertz: " + hertz;
+    }
 }
