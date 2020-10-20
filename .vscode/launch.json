@@ -9,7 +9,7 @@
       "type": "lldb",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": ["./CSCI222/asmt6/LetterFreq/communistManifesto.txt"],
+      "args": ["./CSCI222/lab3-revision-1/matrix2.txt"],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "clang++ - Build and debug active file"
     },
