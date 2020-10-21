@@ -14,6 +14,7 @@ public class DerCli {
     private Queue<Thread> threadQueue;
     private int totalQueueLength;
     private Scanner scan;
+    private boolean isCLI;
 
     public DerCli(String[] cliStrings) throws IOException {
         derApiArray = new ArrayList<DerApi>();
@@ -183,7 +184,9 @@ public class DerCli {
                 derApiArray.add(new DerApi(id));
                 taskQueue.remove();
                 threadQueue.remove();
-                System.out.print("\n" + id + " successfully dequeued\ncmd> ");
+                System.out.print("\n" + id + " successfully dequeued");
+                if (isCLI)
+                    System.out.print("\ncmd>");
                 if (!threadQueue.isEmpty()) {
                     threadQueue.peek().start();
                 }
@@ -199,6 +202,7 @@ public class DerCli {
     }
 
     private void runCLIMode() throws IOException {
+        isCLI = true;
         System.out.println("ENTER \"quit\" to end CLI mode");
         String input;
         String[] CLIArgs;
