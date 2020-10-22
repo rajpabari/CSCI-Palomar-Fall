@@ -17,8 +17,8 @@
       "type": "java",
       "name": "Java: Launch & Debug",
       "request": "launch",
-      "mainClass": "${file}"
-      //"args": "./CSCI210/w6l1/maze3.txt"
+      "mainClass": "${file}",
+      "args": ["--file","./CSCI210/w9/der.csv"]
     },
     {
       "name": "Python: Current File",
