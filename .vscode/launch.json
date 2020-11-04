@@ -4,12 +4,15 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+
     {
       "name": "NEW LLDB - C++ Debug and Launch",
       "type": "lldb",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": ["./CSCI222/lab3-revision-1/matrix2.txt"],
+      "args": [
+        "./CSCI222/lab3-revision-1/matrix2.txt"
+      ],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "clang++ - Build and debug active file"
     },
@@ -17,8 +20,7 @@
       "type": "java",
       "name": "Java: Launch & Debug",
       "request": "launch",
-      "mainClass": "${file}",
-      "args": ["--file","./CSCI210/w9/der.csv"]
+      "mainClass": "${file}"
     },
     {
       "name": "Python: Current File",
