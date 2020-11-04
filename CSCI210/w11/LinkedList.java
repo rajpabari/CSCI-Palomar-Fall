@@ -76,20 +76,21 @@ public class LinkedList<T> {
         if (firstNode == lastNode) {
             firstNode = lastNode = null;
         } else {
-            getSecondLastNode().nextNode = null;
             lastNode = getSecondLastNode();
+            lastNode.nextNode = null;
         }
         return toReturn;
     }
 
     public String toString() {
-        String ans = "[ ";
+        String ans = "[";
         if (isEmpty())
             return ans + "]";
         ListNode<T> currentNode = firstNode;
         while (currentNode.nextNode != null) {
             ans += currentNode.data + ", ";
+            currentNode = currentNode.nextNode;
         }
-        return ans + "]";
+        return ans + currentNode.data + "]";
     }
 }
