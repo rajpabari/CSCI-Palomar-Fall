@@ -61,7 +61,8 @@
     "*.tcc": "cpp",
     "hashtable": "cpp",
     "fstream": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "deque": "cpp"
   },
   "files.exclude": {
     "**/.classpath": true,
