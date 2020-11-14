@@ -38,6 +38,7 @@ int main(int argc, char *argv[]) {
     return 0; // exit program
   }
   Maze maze(getFileContents(argv[1]));
+  cout << "Maze Solved: " << boolalpha << maze.solve() << endl;
   cout << maze;
   return 0;
 }

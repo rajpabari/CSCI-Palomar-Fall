@@ -4,6 +4,7 @@ Maze::Maze(vector<vector<char> > fileContents) {
 
   startCol = -1;
   startRow = -1;
+  hasWon = false;
   for (int i = 0; i < fileContents[0].size() + 2; i++) {
     vector<char> temp(fileContents.size() + 2);
     maze.push_back(temp);
@@ -21,6 +22,29 @@ Maze::Maze(vector<vector<char> > fileContents) {
         startRow = i;
         startCol = j;
       }
+    }
+  }
+}
+
+bool Maze::solve() {
+  getSolution(startRow, startCol);
+  maze[startRow][startCol] = 'S';
+  return hasWon;
+}
+
+void Maze::getSolution(int row, int col) {
+  for (int i = -1; i < 2; i++) {
+    for (int j = -1; j < 2; j++) {
+      if (abs(j) == abs(i))
+        continue;
+      if (maze[row + i][col + j] == 'F' || maze[row + i][col + j] == 'f') {
+        hasWon = true;
+        return;
+      } else if (maze[row + i][col + j] == ' ') {
+        maze[row + i][col + j] = 'x';
+        getSolution(row + i, col + j);
+      }
+      // else if (maze[row])
     }
   }
 }

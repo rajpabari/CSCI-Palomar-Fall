@@ -1,6 +1,7 @@
 #ifndef MAZE_H
 #define MAZE_H
 #include "Square.h"
+#include <cmath>
 #include <iostream>
 #include <vector>
 
@@ -9,7 +10,7 @@ using namespace std;
 class Maze {
 public:
   Maze(vector<vector<char> > fileContents);
-  void solve();
+  bool solve();
   // Overload << operator to print matrix to an output stream
   // @param ostream &out the ostream to output matrix to
   // @param Matrix &printMatrix the matrix to print out
@@ -22,6 +23,8 @@ private:
   int startCol;
   int baseLength;
   int heightLength;
+  bool hasWon;
+  void getSolution(int row, int col);
 };
 
 #endif
