@@ -9,9 +9,10 @@ class DemoArrayList {
     }
 
     public void doStringDemo() {
+        System.out.println("Unsorted ArrayList:");
         list.add("Volvo");
-        list.add("BMW");
         list.add("Ford");
+        list.add("BMW");
         list.add("Mazda");
         for (String i : list) {
             System.out.println(i);
