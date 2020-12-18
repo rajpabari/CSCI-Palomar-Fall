@@ -11,7 +11,6 @@
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
       "args": [
-        "./CSCI222/asmt10/Maze-P-13.8/maze1.txt"
       ],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "clang++ - Build and debug active file"
