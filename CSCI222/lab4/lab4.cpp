@@ -7,6 +7,9 @@
 #include <unordered_map>
 #include <vector>
 
+// ./svm-train ../train-data.txt
+// ./svm-predict ../test-data.txt ./train-data.txt.model ../predictions.txt
+
 /*
 First time:
 cd ./CSCI222/lab4/build
@@ -138,13 +141,31 @@ vector<vector<int> > extractFeatures(const vector<string> trainFileNames,
   return features;
 }
 
+void outputAndFormatData(vector<int> labels, vector<vector<int> > features,
+                         string type) {
+  ofstream outFile;
+  outFile.open("./CSCI222/lab4/" + type + "-data.txt");
+  for (int i = 0; i < features.size(); i++) {
+    outFile << labels[i] << " ";
+    for (int j = 0; j < features[i].size(); j++) {
+      outFile << j << ":" << features[i][j];
+      if (j != features[i].size() - 1) {
+        outFile << " ";
+      } else if (i != features.size() - 1) {
+        outFile << "\n";
+      }
+    }
+  }
+  outFile.close();
+}
+
 int main(int argc, char const *argv[]) {
   string pathToTrainMails = "./CSCI222/lab4/ling-spam/train-mails/";
   string pathToTestMails = "./CSCI222/lab4/ling-spam/test-mails/";
   vector<string> trainFileNames =
       getFileContents(pathToTrainMails + "trainFileNames.txt");
   vector<string> testFileNames =
-      getFileContents(pathToTrainMails + "testFileNames.txt");
+      getFileContents(pathToTestMails + "testFileNames.txt");
 
   map<string, int> trainWords = makeMap(trainFileNames, pathToTrainMails);
   vector<vector<int> > trainFeatures =
@@ -153,6 +174,7 @@ int main(int argc, char const *argv[]) {
   for (int i = trainLabels.size() / 2; i < trainLabels.size(); i++) {
     trainLabels[i] = 1;
   }
+  outputAndFormatData(trainLabels, trainFeatures, "train");
 
   map<string, int> testWords = makeMap(testFileNames, pathToTestMails);
   vector<vector<int> > testFeatures =
@@ -161,6 +183,6 @@ int main(int argc, char const *argv[]) {
   for (int i = testLabels.size() / 2; i < testLabels.size(); i++) {
     testLabels[i] = 1;
   }
-  cout << "something" << endl;
+  outputAndFormatData(testLabels, testFeatures, "test");
   return 0;
 }
