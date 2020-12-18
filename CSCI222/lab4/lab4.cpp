@@ -7,6 +7,8 @@
 #include <unordered_map>
 #include <vector>
 
+#define NUM_WORDS_MOST_FREQUENT 1000
+
 // ./svm-train ../train-data.txt
 // ./svm-predict ../test-data.txt ./train-data.txt.model ../predictions.txt
 
@@ -105,7 +107,8 @@ map<string, int> makeMap(const vector<string> trainFileNames,
   sort(pairs.begin(), pairs.end(), cmp);
 
   // Print the sorted value
-  for (int i = pairs.size() - 1; i >= pairs.size() - 3000; i--) {
+  for (int i = pairs.size() - 1; i >= pairs.size() - NUM_WORDS_MOST_FREQUENT;
+       i--) {
     top3kWords[pairs[i].first] = pairs[i].second;
   }
 
@@ -118,7 +121,8 @@ vector<vector<int> > extractFeatures(const vector<string> trainFileNames,
   vector<string> currentFile;
   string currentWord;
   int wordID = 0;
-  vector<vector<int> > features(trainFileNames.size(), vector<int>(3000, 0));
+  vector<vector<int> > features(trainFileNames.size(),
+                                vector<int>(frequencyMap.size(), 0));
   for (int docID = 0; docID < trainFileNames.size(); docID++) {
     currentFile = getFileContents(pathToTrainMails + trainFileNames[docID]);
     for (size_t j = 0; j < currentFile.size(); j++) {
@@ -151,7 +155,7 @@ void outputAndFormatData(vector<int> labels, vector<vector<int> > features,
     }
     outFile << labels[i] << " ";
     for (int j = 0; j < features[i].size(); j++) {
-      outFile << j << ":" << features[i][j];
+      outFile << (j + 1) << ":" << features[i][j];
       if (j != features[i].size() - 1) {
         outFile << " ";
       } else if (i != features.size() - 1) {
