@@ -62,7 +62,8 @@
     "hashtable": "cpp",
     "fstream": "cpp",
     "stack": "cpp",
-    "deque": "cpp"
+    "deque": "cpp",
+    "map": "cpp"
   },
   "files.exclude": {
     "**/.classpath": true,
