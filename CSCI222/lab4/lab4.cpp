@@ -146,6 +146,9 @@ void outputAndFormatData(vector<int> labels, vector<vector<int> > features,
   ofstream outFile;
   outFile.open("./CSCI222/lab4/" + type + "-data.txt");
   for (int i = 0; i < features.size(); i++) {
+    if (labels[i] > 0) {
+      outFile << "+";
+    }
     outFile << labels[i] << " ";
     for (int j = 0; j < features[i].size(); j++) {
       outFile << j << ":" << features[i][j];
@@ -170,16 +173,22 @@ int main(int argc, char const *argv[]) {
   map<string, int> trainWords = makeMap(trainFileNames, pathToTrainMails);
   vector<vector<int> > trainFeatures =
       extractFeatures(trainFileNames, pathToTrainMails, trainWords);
-  vector<int> trainLabels(trainFileNames.size(), 0);
+  vector<int> trainLabels(trainFileNames.size(), -1);
   for (int i = trainLabels.size() / 2; i < trainLabels.size(); i++) {
     trainLabels[i] = 1;
   }
   outputAndFormatData(trainLabels, trainFeatures, "train");
+  /* verify that the features matrix is working
+  int ans = 0;
+  for (int i = 0; i < trainFeatures.size(); i++) {
+    ans += trainFeatures[i][705];
+  }
+  cout << ans << " " << trainWords["deat"] << endl;*/
 
   map<string, int> testWords = makeMap(testFileNames, pathToTestMails);
   vector<vector<int> > testFeatures =
       extractFeatures(testFileNames, pathToTestMails, testWords);
-  vector<int> testLabels(testFileNames.size(), 0);
+  vector<int> testLabels(testFileNames.size(), -1);
   for (int i = testLabels.size() / 2; i < testLabels.size(); i++) {
     testLabels[i] = 1;
   }
