@@ -9,17 +9,17 @@
 
 #define NUM_WORDS_MOST_FREQUENT 1000
 
-// ./svm-train ../train-data.txt
-// ./svm-predict ../test-data.txt ./train-data.txt.model ../predictions.txt
-
 /*
-First time:
-cd ./CSCI222/lab4/build
-To run each time, paste these commands:
-cmake -DCMAKE_PREFIX_PATH=$PWD/../../libtorch ..
-cmake --build . --config Debug
-./lab4
+For increased prediction accuracy on SVM lab, I changed these things:
+1) the options when using svm-train in commandline (look at the readme, i
+changed svm_type and kernel_type) 2) number of "most frequent" words you keep
+(decreased from 3000)
 
+tinkering with those, I got accuracy from 51% to 69%
+
+this is command line args for 69% accuracy (as in screenshot) from
+./svm-train -s 0 -t 0 ../train-data.txt
+./svm-predict ../test-data.txt ./train-data.txt.model ../predictions.txt
 */
 
 // NOTE Professor, I used Ling-spam corpus training/test data found at this
