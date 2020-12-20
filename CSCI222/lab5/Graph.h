@@ -13,10 +13,11 @@ class Graph {
 private:
   vector<vector<pair<T, int> > > adjMatrix;
   map<int, int> newVertexIds;
+  bool directed;
 
 public:
   Graph(vector<string> inputFile);
-  getDegree(int vertexId);
+  int getDegree(int vertexId);
 };
 
 #endif

@@ -1,0 +1,9 @@
+string
+directed
+apple banana 2.0
+apple carrot 5.2
+carrot apple 3.4
+apple eggplant 7.3
+eggplant carrot 2.5
+eggplant eggplant 1.4
+grape apple 4.4
