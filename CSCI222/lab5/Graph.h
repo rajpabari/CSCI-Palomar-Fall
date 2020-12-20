@@ -1,12 +1,22 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
-class Graph
-{
+#include <iostream>
+#include <map>
+#include <vector>
+
+using namespace std;
+
+template <typename T>
+
+class Graph {
 private:
-    /* data */
+  vector<vector<pair<T, int> > > adjMatrix;
+  map<int, int> newVertexIds;
+
 public:
-    Graph(/* args */);
+  Graph(vector<string> inputFile);
+  getDegree(int vertexId);
 };
 
 #endif
