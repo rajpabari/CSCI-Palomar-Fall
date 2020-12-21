@@ -10,7 +10,7 @@
       "type": "lldb",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": ["./CSCI222/lab5/GraphInput1.txt"
+      "args": ["./CSCI222/lab5/GraphInput1.txt", "./CSCI222/lab5/GraphInput2.txt"
       ],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "clang++ - Build and debug active file"

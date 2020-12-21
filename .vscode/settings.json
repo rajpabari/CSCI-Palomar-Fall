@@ -63,7 +63,9 @@
     "fstream": "cpp",
     "stack": "cpp",
     "deque": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "regex": "cpp",
+    "variant": "cpp"
   },
   "files.exclude": {
     "**/.classpath": true,
@@ -71,6 +73,6 @@
     "**/.settings": true,
     "**/.factorypath": true
   },
-  "C_Cpp.errorSquiggles": "Disabled",
+  "C_Cpp.errorSquiggles": "Enabled",
   "java.dependency.packagePresentation": "flat"
 }
