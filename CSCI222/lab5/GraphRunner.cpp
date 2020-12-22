@@ -150,8 +150,13 @@ int main(int argc, char const *argv[]) {
 
   vector<tuple<string *, string *, double> > stringFileContents =
       getFileContentsStringData(argv[1]);
-
   Graph<string> stringGraph(stringFileContents, isDirected(argv[1]));
+  cout << stringGraph << endl;
+  cout << "Outdegree of " << *stringGraph.getData(3) << ": "
+       << stringGraph.getDegree(stringGraph.getData(3)) << endl;
+  cout << "Outdegree of " << *stringGraph.getData(4) << ": "
+       << stringGraph.getDegree(stringGraph.getData(4)) << endl;
+
   vector<tuple<int *, int *, double> > intFileContents =
       getFileContentsIntData(argv[2]);
   Graph<int> intGraph(intFileContents, isDirected(argv[2]));

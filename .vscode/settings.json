@@ -81,7 +81,8 @@
     "thread": "cpp",
     "typeindex": "cpp",
     "unordered_set": "cpp",
-    "valarray": "cpp"
+    "valarray": "cpp",
+    "*.tpp": "cpp"
   },
   "files.exclude": {
     "**/.classpath": true,
