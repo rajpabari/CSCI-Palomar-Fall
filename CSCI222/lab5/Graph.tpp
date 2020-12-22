@@ -62,7 +62,7 @@ template <typename T> Graph<T>::~Graph() {
 }
 
 template <typename T>
-void Graph<T>::replaceVertexData(T *oldVertexData, T *newVertexData) {
+void Graph<T>::setVertexData(T *oldVertexData, T *newVertexData) {
   int temp = newVertexIds[oldVertexData];
   newVertexIds.erase(oldVertexData);
   newVertexIds[newVertexData] = temp;
@@ -152,6 +152,25 @@ vector<T *> Graph<T>::shortestPath(T *start, T *end, double &length) {
   path.push_back(getData(currentId));
   reverse(path.begin(), path.end());
   return path;
+}
+
+template <typename T> void Graph<T>::dfPrint() {
+  cout << "Vertices using depth-first print: ";
+  vector<bool> visited(numVertices, false);
+  dfTraverse(0, visited);
+  cout << endl;
+}
+
+template <typename T>
+void Graph<T>::dfTraverse(int start, vector<bool> &visited) {
+  visited[start] = true;
+  cout << *getData(start) << " ";
+
+  for (size_t i = 0; i < numVertices; i++) {
+    if (adjMatrix[start][i] != 0 && !visited[i]) {
+      dfTraverse(i, visited);
+    }
+  }
 }
 
 // Overload << operator to print graph to an output stream

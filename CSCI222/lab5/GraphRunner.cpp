@@ -3,13 +3,15 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <set>
 #include <sstream>
 #include <string>
 #include <tuple>
 #include <vector>
 
 using namespace std;
+
+// Hi professor, just a note that I decided to do file processing in this file
+// instead of in the
 
 // gets the contents of the file located at filePath
 //@param string filePath the path to the file
@@ -160,7 +162,7 @@ int main(int argc, char const *argv[]) {
   string *toReplace = new string("lettuce");
   cout << "Replacing vertex " << *stringGraph.getData(0) << " with "
        << *toReplace << endl;
-  stringGraph.replaceVertexData(stringGraph.getData(0), toReplace);
+  stringGraph.setVertexData(stringGraph.getData(0), toReplace);
 
   string *toAdd = new string("zucchini");
   cout << "Adding vertex " << *toAdd << endl;
@@ -211,6 +213,7 @@ int main(int argc, char const *argv[]) {
   Graph<string> newStringGraph(newStringFileContents, isDirected(argv[3]));
   cout << newStringGraph;
   double pathCost = 0.0;
+  newStringGraph.dfPrint();
   cout << "Shortest path from vertex A to F:" << endl;
   vector<string *> shortestPathAF = newStringGraph.shortestPath(
       newStringGraph.getData(0), newStringGraph.getData(5), pathCost);
