@@ -1,6 +1,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <cmath>
 #include <iostream>
 #include <map>
 #include <string>
@@ -34,12 +35,16 @@ public:
   int getDegree(T *vertex);
   // map T to int, count how many neighbors it has, +2 for self loop
   // NOTE for directed graph it returns outdegree
-
-  //-----------------FUNCTIONS TO DO------------
   void replaceVertexData(T *oldVertexData, T *newVertexData);
   // change the map
+  vector<vector<double> > getAdjMatrix();
+  // return adjacency matrix
+  bool isDirected();
+  // return true if directed, false if not
   void addVertex(T *data);
   // add to the map
+
+  //-----------------FUNCTIONS TO DO------------
   void dftraverse();
   // depth first traversal
   vector<T *> shortestPath(T *start, T *end, double &length);

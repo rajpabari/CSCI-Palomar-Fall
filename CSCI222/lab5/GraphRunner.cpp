@@ -131,8 +131,10 @@ getFileContentsStringData(string filePath) {
 
 // Display usage information to cout
 void usage() {
-  cout << "Input path to graph input file in command line" << endl;
-  cout << "Example: g++ GraphRunner.cpp ./CSCI222/lab5/GraphInput1.txt" << endl;
+  cout << "Input path to graph input file 1 and 2 in command line" << endl;
+  cout << "Example: g++ GraphRunner.cpp ./CSCI222/lab5/GraphInput1.txt "
+          "./CSCI222/lab5/GraphInput2.txt"
+       << endl;
   cout << "note: file format is as follows"
           "line 1: \"directed\" or \"undirected\" graph\n\nrest of lines "
           "define "
@@ -142,25 +144,43 @@ void usage() {
 }
 
 int main(int argc, char const *argv[]) {
-  // if there isn't at least 1 argument (argv[0] is filename)
-  if (argc < 2) {
+  // if there isn't 2 arguments (argv[0] is filename)
+  if (argc != 3) {
     usage();  // display usage info
     return 0; // exit program
   }
-
+  cout << "-------------TESTING WITH STRING GRAPH (INPUT 1)-------------"
+       << endl;
   vector<tuple<string *, string *, double> > stringFileContents =
       getFileContentsStringData(argv[1]);
   Graph<string> stringGraph(stringFileContents, isDirected(argv[1]));
-  cout << stringGraph << endl;
-  cout << "Outdegree of " << *stringGraph.getData(3) << ": "
-       << stringGraph.getDegree(stringGraph.getData(3)) << endl;
-  cout << "Outdegree of " << *stringGraph.getData(4) << ": "
-       << stringGraph.getDegree(stringGraph.getData(4)) << endl;
+  cout << "ORIGINAL STRING GRAPH:" << endl;
+  cout << stringGraph;
+  string *toReplace = new string("lettuce");
+  cout << "Replacing vertex " << *stringGraph.getData(0) << " with "
+       << *toReplace << endl;
+  stringGraph.replaceVertexData(stringGraph.getData(0), toReplace);
 
+  string *toAdd = new string("zucchini");
+  cout << "Adding vertex " << *toAdd << endl;
+  stringGraph.addVertex(toAdd);
+  cout << "Adding edge from " << *toAdd << " to " << *toReplace
+       << " with weight 2.2" << endl;
+  stringGraph.addEdge(toAdd, toReplace, 2.2);
+  cout << "Adding edge from " << *toAdd << " to " << *stringGraph.getData(2)
+       << " with weight 4.9" << endl;
+  stringGraph.addEdge(toAdd, stringGraph.getData(2), 4.9);
+  cout << "MODIFIED STRING GRAPH:" << endl;
+  cout << stringGraph;
+
+  cout << "-------------TESTING WITH INT GRAPH (INPUT 2)-------------" << endl;
   vector<tuple<int *, int *, double> > intFileContents =
       getFileContentsIntData(argv[2]);
   Graph<int> intGraph(intFileContents, isDirected(argv[2]));
-
-  cout << "howdy doody" << endl;
+  cout << intGraph;
+  cout << "Degree of vertex " << *intGraph.getData(3) << ": "
+       << intGraph.getDegree(intGraph.getData(3)) << endl;
+  cout << "Degree of vertex " << *intGraph.getData(4) << ": "
+       << intGraph.getDegree(intGraph.getData(4)) << endl;
   return 0;
 }

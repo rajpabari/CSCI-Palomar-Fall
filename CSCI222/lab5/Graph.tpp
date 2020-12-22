@@ -36,7 +36,6 @@ Graph<T>::Graph(vector<tuple<T *, T *, double> > edges, bool isDirected) {
   for (auto i : edges) {
     addEdge(get<0>(i), get<1>(i), get<2>(i));
   }
-  cout << "ok" << endl;
 }
 
 template <typename T> int Graph<T>::size() { return numVertices; }
@@ -62,14 +61,53 @@ template <typename T> Graph<T>::~Graph() {
   }
 }
 
+template <typename T>
+void Graph<T>::replaceVertexData(T *oldVertexData, T *newVertexData) {
+  int temp = newVertexIds[oldVertexData];
+  newVertexIds.erase(oldVertexData);
+  newVertexIds[newVertexData] = temp;
+}
+
+template <typename T> vector<vector<double> > Graph<T>::getAdjMatrix() {
+  return adjMatrix;
+}
+
+template <typename T> bool Graph<T>::isDirected() { return directed; }
+
+template <typename T> void Graph<T>::addVertex(T *data) {
+  newVertexIds[data] = numVertices++;
+  for (size_t i = 0; i < adjMatrix.size(); i++) {
+    adjMatrix[i].push_back(0.0);
+  }
+  vector<double> temp(numVertices, 0.0);
+  adjMatrix.push_back(temp);
+}
+
 // Overload << operator to print graph to an output stream
 // @param ostream &out the ostream to output graph to
 // @param &printGraph the graph to print out
 // @return ostream& an ostream with the graph printed and formatted on it
 template <typename T> ostream &operator<<(ostream &out, Graph<T> &printGraph) {
-  out << "Vertices: ";
+
+  out << "Vertices (" << printGraph.size() << " total): ";
   for (int i = 0; i < printGraph.size(); i++) {
     out << *(printGraph.getData(i)) << " ";
+  }
+  out << endl << "Edges (";
+  if (printGraph.isDirected())
+    out << "directed graph";
+  else
+    out << "undirected graph";
+  out << "): " << endl;
+  vector<vector<double> > adjMatrix = printGraph.getAdjMatrix();
+  for (int i = 0; i < adjMatrix.size(); i++) {
+    for (int j = 0; j < adjMatrix[0].size(); j++) {
+      if (adjMatrix[i][j] != 0.0) {
+        out << "From vertex " << *printGraph.getData(i) << " to vertex "
+            << *printGraph.getData(j) << " with weight "
+            << (round(adjMatrix[i][j] * 1000.0) / 1000.0) << endl;
+      }
+    }
   }
   return out;
 }
