@@ -83,6 +83,10 @@ template <typename T> void Graph<T>::addVertex(T *data) {
   adjMatrix.push_back(temp);
 }
 
+template <typename T> void Graph<T>::printPath(vector<T*> path) {
+  
+}
+
 // Overload << operator to print graph to an output stream
 // @param ostream &out the ostream to output graph to
 // @param &printGraph the graph to print out

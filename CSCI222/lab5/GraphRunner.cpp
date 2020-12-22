@@ -182,5 +182,6 @@ int main(int argc, char const *argv[]) {
        << intGraph.getDegree(intGraph.getData(3)) << endl;
   cout << "Degree of vertex " << *intGraph.getData(4) << ": "
        << intGraph.getDegree(intGraph.getData(4)) << endl;
+
   return 0;
 }
