@@ -1,7 +1,9 @@
-#include "Araph.h"
+#include "Graph.h"
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <map>
+#include <set>
 #include <sstream>
 #include <string>
 #include <tuple>
@@ -19,6 +21,7 @@ vector<tuple<int *, int *, double> > getFileContentsIntData(string filePath) {
   string line;
   string word;
   int numWordsRead;
+  map<int, int *> uniqueData;
 
   // while there are lines to read in the file
   while (getline(infile, line)) {
@@ -32,13 +35,23 @@ vector<tuple<int *, int *, double> > getFileContentsIntData(string filePath) {
     // while there's a word to read on this line
     while (iss >> word) {
       if (numWordsRead == 0) {
-        int *temp = new int;
-        *temp = stoi(word);
-        get<0>(current) = temp;
+        if (uniqueData.find(stoi(word)) != uniqueData.end()) {
+          get<0>(current) = uniqueData[stoi(word)];
+        } else {
+          int *newInt = new int;
+          *newInt = stoi(word);
+          get<0>(current) = newInt;
+          uniqueData[stoi(word)] = newInt;
+        }
       } else if (numWordsRead == 1) {
-        int *temp = new int;
-        *temp = stoi(word);
-        get<1>(current) = temp;
+        if (uniqueData.find(stoi(word)) != uniqueData.end()) {
+          get<1>(current) = uniqueData[stoi(word)];
+        } else {
+          int *newInt = new int;
+          *newInt = stoi(word);
+          get<1>(current) = newInt;
+          uniqueData[stoi(word)] = newInt;
+        }
       } else {
         double weight = stod(word);
         get<2>(current) = weight;
@@ -47,30 +60,6 @@ vector<tuple<int *, int *, double> > getFileContentsIntData(string filePath) {
     }
     // push those lines to the end of the vector
     data.push_back(current);
-  }
-  infile.close();
-  // return our vector
-  return data;
-}
-
-/*
-#include <fstream>
-#include <string>
-#include <vector>
-*/
-// gets the contents of the file located at filePath
-//@param string filePath the path to the file
-//@return the contents of the file in a string vector
-vector<string> getFileContents(string filePath) {
-  vector<string> data; // raw input data from file
-  ifstream infile;
-  infile.open(filePath); // open the filename supplied
-  string line;
-
-  // while there are lines to read in the file
-  while (getline(infile, line)) {
-    // push those lines to the end of the vector
-    data.push_back(line);
   }
   infile.close();
   // return our vector
@@ -97,6 +86,7 @@ getFileContentsStringData(string filePath) {
   string line;
   string word;
   int numWordsRead;
+  map<string, string *> uniqueData;
 
   // while there are lines to read in the file
   while (getline(infile, line)) {
@@ -110,11 +100,21 @@ getFileContentsStringData(string filePath) {
     // while there's a word to read on this line
     while (iss >> word) {
       if (numWordsRead == 0) {
-        string *newWord = new string(word);
-        get<0>(current) = newWord;
+        if (uniqueData.find(word) != uniqueData.end()) {
+          get<0>(current) = uniqueData[word];
+        } else {
+          string *newWord = new string(word);
+          get<0>(current) = newWord;
+          uniqueData[word] = newWord;
+        }
       } else if (numWordsRead == 1) {
-        string *newWord = new string(word);
-        get<1>(current) = newWord;
+        if (uniqueData.find(word) != uniqueData.end()) {
+          get<1>(current) = uniqueData[word];
+        } else {
+          string *newWord = new string(word);
+          get<1>(current) = newWord;
+          uniqueData[word] = newWord;
+        }
       } else {
         double weight = stod(word);
         get<2>(current) = weight;
@@ -147,17 +147,15 @@ int main(int argc, char const *argv[]) {
     usage();  // display usage info
     return 0; // exit program
   }
+
   vector<tuple<string *, string *, double> > stringFileContents =
       getFileContentsStringData(argv[1]);
 
   Graph<string> stringGraph(stringFileContents, isDirected(argv[1]));
-
   vector<tuple<int *, int *, double> > intFileContents =
       getFileContentsIntData(argv[2]);
+  Graph<int> intGraph(intFileContents, isDirected(argv[2]));
+
   cout << "howdy doody" << endl;
-  for (int i = 0; i < stringFileContents.size(); i++) {
-    delete get<0>(stringFileContents[i]);
-    delete get<1>(stringFileContents[i]);
-  }
   return 0;
 }

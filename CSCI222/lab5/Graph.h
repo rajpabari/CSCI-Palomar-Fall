@@ -9,7 +9,7 @@
 
 using namespace std;
 
-template <typename T>
+template <class T>
 
 class Graph {
 private:
@@ -23,14 +23,16 @@ private:
 public:
   Graph();
   Graph(vector<tuple<T *, T *, double> > edges, bool isDirected);
-  int getDegree(T *vertex);
+  void addEdge(T *from, T *to, double weight);
+  // add edge from --> to with weight weight
+
+  /*int getDegree(T *vertex);
   // map T to int, count how many neighbors it has, +2 for self loop
   void replaceVertexData(T *oldVertexData, T *newVertexData);
   // change the map
   void addVertex(T *data);
   // add to the map
-  void addEdge(T *from, T *to, double weight);
-  // add edge from --> to with weight weight
+
   T *getStartVertex();
   // return vertex with id 0
   void dftraverse();
@@ -42,7 +44,8 @@ public:
 
   void printPath(vector<T *> path);
   // print to cout
-  T getVertex(int id);
+  T getVertex(int id);*/
 };
 
+#include "Graph.tpp"
 #endif
