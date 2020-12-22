@@ -20,6 +20,7 @@ private:
   map<T *, int> newVertexIds; // stores vertex ids for row and col of adjMatrix
   bool directed;              // is directed or nah
   int numVertices;
+  int minDistanceId(vector<pair<double, T *> > distances, vector<bool> marked);
 
 public:
   //--------------COMPLETED FUNCTIONS-----------
@@ -49,12 +50,12 @@ public:
   // print to cout
   double computeCost(vector<T *> path);
   // compute cost of a given path
+  vector<T *> shortestPath(T *start, T *end, double &length);
+  // return shortest path and put length of path in length param
 
   //-----------------FUNCTIONS TO DO------------
   void dftraverse();
   // depth first traversal
-  vector<T *> shortestPath(T *start, T *end, double &length);
-  // return shortest path and put length of path in length param
 };
 
 #include "Graph.tpp"

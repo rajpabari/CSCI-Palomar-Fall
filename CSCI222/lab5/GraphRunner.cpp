@@ -203,14 +203,18 @@ int main(int argc, char const *argv[]) {
   intGraph.printPath(testPath2);
   cout << "Path incomplete. Cost: " << intGraph.computeCost(testPath2) << endl;
 
-  cout << "-------------TESTING WITH STRING GRAPH (INPUT 3)-------------"
+  cout << "-------------TESTING WITH STRING GRAPH (INPUT 3 FROM LECTURE "
+          "SLIDES)-------------"
        << endl;
   vector<tuple<string *, string *, double> > newStringFileContents =
       getFileContentsStringData(argv[3]);
   Graph<string> newStringGraph(newStringFileContents, isDirected(argv[3]));
   cout << newStringGraph;
-  double pathLength = 0.0;
+  double pathCost = 0.0;
+  cout << "Shortest path from vertex A to F:" << endl;
   vector<string *> shortestPathAF = newStringGraph.shortestPath(
-      newStringGraph.getData(0), newStringGraph.getData(6), pathLength);
+      newStringGraph.getData(0), newStringGraph.getData(5), pathCost);
+  newStringGraph.printPath(shortestPathAF);
+  cout << "Total cost of path: " << pathCost << endl;
   return 0;
 }
