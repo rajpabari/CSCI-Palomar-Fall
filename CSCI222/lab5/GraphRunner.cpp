@@ -133,7 +133,7 @@ getFileContentsStringData(string filePath) {
 void usage() {
   cout << "Input path to graph input file 1 and 2 in command line" << endl;
   cout << "Example: g++ GraphRunner.cpp ./CSCI222/lab5/GraphInput1.txt "
-          "./CSCI222/lab5/GraphInput2.txt"
+          "./CSCI222/lab5/GraphInput2.txt ./CSCI222/lab5/GraphInput3.txt"
        << endl;
   cout << "note: file format is as follows"
           "line 1: \"directed\" or \"undirected\" graph\n\nrest of lines "
@@ -144,11 +144,12 @@ void usage() {
 }
 
 int main(int argc, char const *argv[]) {
-  // if there isn't 2 arguments (argv[0] is filename)
-  if (argc != 3) {
+  // if there isn't 3 arguments (argv[0] is filename)
+  if (argc != 4) {
     usage();  // display usage info
     return 0; // exit program
   }
+
   cout << "-------------TESTING WITH STRING GRAPH (INPUT 1)-------------"
        << endl;
   vector<tuple<string *, string *, double> > stringFileContents =
@@ -178,10 +179,38 @@ int main(int argc, char const *argv[]) {
       getFileContentsIntData(argv[2]);
   Graph<int> intGraph(intFileContents, isDirected(argv[2]));
   cout << intGraph;
+  cout << "Starting vertex: " << *intGraph.getStartVertex() << endl;
   cout << "Degree of vertex " << *intGraph.getData(3) << ": "
        << intGraph.getDegree(intGraph.getData(3)) << endl;
   cout << "Degree of vertex " << *intGraph.getData(4) << ": "
        << intGraph.getDegree(intGraph.getData(4)) << endl;
 
+  vector<int *> testPath1;
+  testPath1.push_back(intGraph.getData(4));
+  testPath1.push_back(intGraph.getData(2));
+  testPath1.push_back(intGraph.getData(0));
+  testPath1.push_back(intGraph.getData(1));
+  cout << "Printing path from vertex 10 to 4 to 1 to 2 (valid)" << endl;
+  intGraph.printPath(testPath1);
+  cout << "Path complete. Cost: " << intGraph.computeCost(testPath1) << endl;
+
+  vector<int *> testPath2;
+  testPath2.push_back(intGraph.getData(4));
+  testPath2.push_back(intGraph.getData(2));
+  testPath2.push_back(intGraph.getData(5));
+  testPath2.push_back(intGraph.getData(0));
+  cout << "Printing path from vertex 10 to 4 to 131 to 1 (invalid)" << endl;
+  intGraph.printPath(testPath2);
+  cout << "Path incomplete. Cost: " << intGraph.computeCost(testPath2) << endl;
+
+  cout << "-------------TESTING WITH STRING GRAPH (INPUT 3)-------------"
+       << endl;
+  vector<tuple<string *, string *, double> > newStringFileContents =
+      getFileContentsStringData(argv[3]);
+  Graph<string> newStringGraph(newStringFileContents, isDirected(argv[3]));
+  cout << newStringGraph;
+  double pathLength = 0.0;
+  vector<string *> shortestPathAF = newStringGraph.shortestPath(
+      newStringGraph.getData(0), newStringGraph.getData(6), pathLength);
   return 0;
 }

@@ -1,8 +1,10 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 
+#include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <string>
 #include <tuple>
@@ -43,16 +45,16 @@ public:
   // return true if directed, false if not
   void addVertex(T *data);
   // add to the map
+  void printPath(vector<T *> path);
+  // print to cout
+  double computeCost(vector<T *> path);
+  // compute cost of a given path
 
   //-----------------FUNCTIONS TO DO------------
   void dftraverse();
   // depth first traversal
   vector<T *> shortestPath(T *start, T *end, double &length);
   // return shortest path and put length of path in length param
-  double computeCost(vector<T *> path);
-  // compute cost of a given path
-  void printPath(vector<T *> path);
-  // print to cout
 };
 
 #include "Graph.tpp"

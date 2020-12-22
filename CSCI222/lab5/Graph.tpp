@@ -83,8 +83,72 @@ template <typename T> void Graph<T>::addVertex(T *data) {
   adjMatrix.push_back(temp);
 }
 
-template <typename T> void Graph<T>::printPath(vector<T*> path) {
-  
+template <typename T> double Graph<T>::computeCost(vector<T *> path) {
+  double ans = 0.0;
+  for (int i = 0; i < path.size() - 1; i++) {
+    if (adjMatrix[newVertexIds[path[i]]][newVertexIds[path[i + 1]]] == 0.0)
+      return -1.0;
+    ans += adjMatrix[newVertexIds[path[i]]][newVertexIds[path[i + 1]]];
+  }
+  return ans;
+}
+
+template <typename T> void Graph<T>::printPath(vector<T *> path) {
+  for (int i = 0; i < path.size() - 1; i++) {
+    if (adjMatrix[newVertexIds[path[i]]][newVertexIds[path[i + 1]]] == 0.0) {
+      cout << "No path from vertex " << *getData(newVertexIds[path[i]])
+           << " to vertex " << *getData(newVertexIds[path[i + 1]]) << endl;
+      break;
+    }
+    cout << "From vertex " << *getData(newVertexIds[path[i]]) << " to vertex "
+         << *getData(newVertexIds[path[i + 1]]) << " with weight "
+         << (round(adjMatrix[newVertexIds[path[i]]][newVertexIds[path[i + 1]]] *
+                   1000.0) /
+             1000.0)
+         << endl;
+  }
+}
+
+template <typename T>
+vector<T *> Graph<T>::shortestPath(T *start, T *end, double &length) {
+  vector<pair<double, T *> > distances(
+      numVertices, make_pair(numeric_limits<double>::max(), nullptr));
+  vector<bool> marked(numVertices, false);
+  int currentId = newVertexIds[start];
+  distances[currentId].first = 0.0;
+  marked[currentId] = true;
+  int endId = newVertexIds[end];
+  double totalDistance = 0.0;
+
+  T *currentVertex = start;
+  double minDistance;
+  int minId;
+  while (find(marked.begin(), marked.end(), false) != marked.end()) {
+    minDistance = numeric_limits<double>::max();
+    currentId = newVertexIds[currentVertex];
+    for (int i = 0; i < adjMatrix.size(); i++) {
+      if (adjMatrix[currentId][i] != 0.0 && !marked[i]) {
+        if (adjMatrix[currentId][i] < minDistance) {
+          minDistance = adjMatrix[currentId][i];
+          minId = i;
+        }
+      }
+    }
+    currentVertex = getData(minId);
+    currentVertex.first = marked[minId] = true;
+    for (int i = 0; i < adjMatrix.size(); i++) {
+      if (adjMatrix[minId][i] != 0.0 && !marked[i]) {
+        double dist = distances[minId].first + adjMatrix[minId][i];
+        if (dist < distances[i].first) {
+          distances[i].first = dist;
+          distances[i].second = currentVertex;
+        }
+      }
+    }
+  }
+  cout << "happiness" << endl;
+  vector<T *> ans;
+  return ans;
 }
 
 // Overload << operator to print graph to an output stream
